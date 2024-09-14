@@ -82,13 +82,13 @@
 				// scene objects
 				
 				var geometry = new THREE.BoxGeometry ( 100, 100, 100 );
-				var material = new THREE.MeshPhongMaterial( { color: ffffff } );	
+				var material = new THREE.MeshPhongMaterial( { color: 0xc41e3a } );	
 						
 				var materials = [ ];
 				var textureLoader = new THREE.TextureLoader();
 				for ( let i = 1; i <= 6; i++ ) {
 					var texture = textureLoader.load( 'textures/' + String(i) + '.png' );
-					var material = new THREE.MeshPhongMaterial( { map: texture, color: 0x00dcff } );
+					var material = new THREE.MeshPhongMaterial( { map: texture, color: 0xffffff } );
 					materials.push( material );
 				}
         
