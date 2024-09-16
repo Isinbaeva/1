@@ -90,11 +90,6 @@
 				Cube.position.y = 100;
 				scene.add( Cube );
 
-				var texture = textureLoader.load( 'textures/checkerboard.jpg' );
-				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-				texture.anisotropy = 16;
-				texture.repeat.set( 4, 4 );
-				var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
 
 				var geometry = new THREE.PlaneGeometry( 800, 800, 1, 1 );	
 				var Plane = new THREE.Mesh( geometry, material );
