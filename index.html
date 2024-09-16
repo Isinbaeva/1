@@ -80,6 +80,11 @@
 			
 
 				// scene objects
+				var texture = textureLoader.load( 'textures/checkerboard.jpg' );
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+				texture.anisotropy = 16;
+				texture.repeat.set( 4, 4 );
+				var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
 				
 				var geometry = new THREE.BoxGeometry ( 100, 100, 100, 16, 16, 16 );
 				var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );	
