@@ -95,8 +95,12 @@ function init() {
 
     // Plane (board)
     var planeTexture = textureLoader.load( 'textures/images.png' );
+    planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+				planeTexture.anisotropy = 16;
+				planeTexture.repeat.set( 4, 4 );
     var planeMaterial = new THREE.MeshBasicMaterial( { map: planeTexture } );
     var planeGeometry = new THREE.PlaneGeometry( 800, 800 );
+    
     
     // Создаем плоскость (доску)
     var plane = new THREE.Mesh( planeGeometry, planeMaterial );
