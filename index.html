@@ -41,10 +41,10 @@
 
 				// CAMERA
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
-				camera.position.set( 0, 400, 600 );
+				camera.position.set( - 600, 500, 1100 );
 
 				// LIGHTS
-				ambientLight = new THREE.AmbientLight( 0xffffff );	// 0.2
+				ambientLight = new THREE.AmbientLight( 0x333333 );	// 0.2
 
 				light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 				light.position.set( 1, 1, 1 );				
@@ -73,34 +73,35 @@
 
 				// scene itself
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xffffff );
+				scene.background = new THREE.Color( 0xD3D3D3 );
 
 				scene.add( ambientLight );
 				scene.add( light );
 			
 
 				// scene objects
+				
+				var textureLoader = new THREE.TextureLoader();
+				var texture = textureLoader.load( 'textures/' + String(i) + '.png' );
+				var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+				var geometry = new THREE.BoxGeometry ( 200, 200, 200 );		
+				var Cube = new THREE.Mesh( geometry, material );
+				Cube.position.y = 100;
+				scene.add( Cube );
+
 				var texture = textureLoader.load( 'textures/checkerboard.jpg' );
 				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 				texture.anisotropy = 16;
 				texture.repeat.set( 4, 4 );
 				var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
-				
-				var geometry = new THREE.BoxGeometry ( 100, 100, 100, 16, 16, 16 );
-				var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );	
-						
-				var materials = [ ];
-				var textureLoader = new THREE.TextureLoader();
-				for ( let i = 1; i <= 6; i++ ) {
-					var texture = textureLoader.load( 'textures/' + String(i) + '.png' );
-					var material = new THREE.MeshPhongMaterial( { map: texture } );
-					materials.push( material );
-				}
-        
-				var Cube = new THREE.Mesh( geometry, materials );
-				Cube.rotation.y = Math.PI / 6;
-				scene.add( Cube );
 
+				var geometry = new THREE.PlaneGeometry( 800, 800, 1, 1 );	
+				var Plane = new THREE.Mesh( geometry, material );
+				Plane.position.y = - 1;
+				Plane.rotation.x =  Math.PI / 2;
+				scene.add( Plane );
+							
 
 			}
 
@@ -127,6 +128,13 @@
 			}
 
 			function render() {
+
+				//var timer = Date.now() * 0.0001;
+
+				//camera.position.x = Math.cos( timer ) * 800;
+				//camera.position.z = Math.sin( timer ) * 800;
+
+				//camera.lookAt( scene.position );
 
 				renderer.render( scene, camera );
 
